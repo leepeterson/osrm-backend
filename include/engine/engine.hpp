@@ -207,6 +207,10 @@ bool Engine<routing_algorithms::mld::Algorithm>::CheckCompatibility(const Engine
 
         auto mem = storage::makeSharedMemory(barrier.data().region);
         auto layout = reinterpret_cast<storage::DataLayout *>(mem->Ptr());
+        // checks that all the needed memory blocks are populated
+        // DataLayout::MLD_CELL_SOURCE_BOUNDARY and DataLayout::MLD_CELL_DESTINATION_BOUNDARY
+        // are not checked, because in situations where there are so few nodes in the graph that
+        // they all fit into one cell, they can be empty.
         bool empty_data = layout->GetBlockSize(storage::DataLayout::MLD_LEVEL_DATA) > 0 &&
                           layout->GetBlockSize(storage::DataLayout::MLD_PARTITION) > 0 &&
                           layout->GetBlockSize(storage::DataLayout::MLD_CELL_TO_CHILDREN) > 0 &&
