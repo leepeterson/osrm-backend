@@ -208,17 +208,15 @@ bool Engine<routing_algorithms::mld::Algorithm>::CheckCompatibility(const Engine
         auto mem = storage::makeSharedMemory(barrier.data().region);
         auto layout = reinterpret_cast<storage::DataLayout *>(mem->Ptr());
         bool empty_data = layout->GetBlockSize(storage::DataLayout::MLD_LEVEL_DATA) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_PARTITION) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_CELL_TO_CHILDREN) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_CELL_SOURCE_BOUNDARY) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_CELL_DESTINATION_BOUNDARY) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_CELLS) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_CELL_LEVEL_OFFSETS) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_GRAPH_NODE_LIST) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_GRAPH_EDGE_LIST) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_CELL_WEIGHTS_0) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_CELL_DURATIONS_0) > 0 &&
-            layout->GetBlockSize(storage::DataLayout::MLD_GRAPH_NODE_TO_OFFSET) > 0;
+                          layout->GetBlockSize(storage::DataLayout::MLD_PARTITION) > 0 &&
+                          layout->GetBlockSize(storage::DataLayout::MLD_CELL_TO_CHILDREN) > 0 &&
+                          layout->GetBlockSize(storage::DataLayout::MLD_CELLS) > 0 &&
+                          layout->GetBlockSize(storage::DataLayout::MLD_CELL_LEVEL_OFFSETS) > 0 &&
+                          layout->GetBlockSize(storage::DataLayout::MLD_GRAPH_NODE_LIST) > 0 &&
+                          layout->GetBlockSize(storage::DataLayout::MLD_GRAPH_EDGE_LIST) > 0 &&
+                          layout->GetBlockSize(storage::DataLayout::MLD_CELL_WEIGHTS_0) > 0 &&
+                          layout->GetBlockSize(storage::DataLayout::MLD_CELL_DURATIONS_0) > 0 &&
+                          layout->GetBlockSize(storage::DataLayout::MLD_GRAPH_NODE_TO_OFFSET) > 0;
         return empty_data;
     }
     else
